@@ -10,13 +10,12 @@ export default function SearchBar({
   onReset,
 }: SearchBarProps) {
   return (
-    <div>
+    <div className="search-container">
       <p>Search</p>
       <p>
         Searching for: <span>{searchTerm}</span>
       </p>
       <input
-        style={{ border: "1px solid black" }}
         value={searchTerm}
         onChange={(e) => onSearchChange(e.target.value)}
       />

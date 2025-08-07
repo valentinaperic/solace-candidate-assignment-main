@@ -3,16 +3,8 @@
 import { useEffect, useState } from "react";
 import SearchBar from "./components/SearchBar";
 import AdvocateTable from "./components/AdvocateTable";
-
-type Advocate = {
-  firstName: string;
-  lastName: string;
-  city: string;
-  degree: string;
-  specialties: string[];
-  yearsOfExperience: number | string;
-  phoneNumber: string;
-};
+import { Advocate } from "./types";
+import './styles.css';
 
 export default function Home() {
   const [advocates, setAdvocates] = useState<Advocate[]>([]);
