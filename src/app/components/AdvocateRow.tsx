@@ -10,7 +10,9 @@ export default function AdvocateRow({ advocate }: { advocate: Advocate }) {
       <td>{advocate.degree}</td>
       <td>
         {advocate.specialties.map((s, index) => (
-          <div key={index}>{s}</div>
+          <div key={index} className="specialty-tag">
+            {s}
+          </div>
         ))}
       </td>
       <td>{advocate.yearsOfExperience}</td>

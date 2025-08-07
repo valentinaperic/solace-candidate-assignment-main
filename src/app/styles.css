@@ -1,0 +1,134 @@
+:root {
+  --solace-green: #285e50;
+  --solace-yellow: #d7a13b;
+  --solace-yellow-hover: #deb260;
+  --solace-yellow-gradient-start: #deb260;
+  --solace-yellow-gradient-end: #d39009;
+  --table-row-hover-bg: #e6f0eb;
+  --table-row-even-bg: #f9f9f9;
+  --table-header-text: white;
+}
+
+main {
+  margin: 24px;
+  font-family: 'Arial', sans-serif;
+  color: var(--solace-green);
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--solace-green);
+}
+
+.search-container {
+  margin-bottom: 24px;
+}
+
+.search-container p {
+  margin: 4px 0;
+  font-weight: 600;
+}
+
+.search-container span {
+  color: var(--solace-yellow);
+}
+
+.search-container input {
+  width: 100%;
+  max-width: 320px;
+  padding: 8px 12px;
+  border: 2px solid var(--solace-green);
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--solace-green);
+  outline-offset: 2px;
+  transition: border-color 0.3s ease;
+}
+
+.search-container input:focus {
+  border-color: var(--solace-yellow);
+}
+
+.search-container button {
+  background-color: var(--solace-yellow);
+  color: var(--solace-green);
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-left: 12px;
+  transition: background-image 0.3s ease, color 0.3s ease;
+  font-size: 14px;
+}
+
+.search-container button:hover {
+  background-image: linear-gradient(
+    45deg,
+    var(--solace-yellow-gradient-start),
+    var(--solace-yellow-gradient-end)
+  );
+  color: #fff;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  max-width: 100vw;
+  table-layout: auto;
+}
+
+thead tr {
+  background-color: var(--solace-green);
+  color: var(--table-header-text);
+}
+
+thead th {
+  padding: 12px 8px;
+  text-align: left;
+  font-weight: 700;
+  font-size: 14px;
+  border-bottom: 2px solid var(--solace-yellow);
+}
+
+tbody tr:nth-child(even) {
+  background-color: var(--table-row-even-bg);
+}
+
+tbody tr:hover {
+  background-color: var(--table-row-hover-bg);
+}
+
+tbody td {
+  padding: 10px 8px;
+  font-size: 13px;
+  vertical-align: top;
+  color: var(--solace-green);
+}
+
+tbody td div {
+  margin: 2px 0;
+  font-weight: 500;
+}
+
+.specialty-tag {
+  display: inline-block;
+  background-color: var(--solace-yellow);
+  color: var(--solace-green);
+  font-weight: 600;
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 16px;
+  margin: 2px 6px 2px 0;
+  white-space: nowrap;
+  user-select: none;
+  cursor: default;
+  transition: background-color 0.3s ease;
+}
+
+.specialty-tag:hover {
+  background-color: var(--solace-yellow-hover);
+}
