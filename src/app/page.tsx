@@ -30,15 +30,23 @@ export default function Home() {
       return;
     }
 
+    //split search by spaces, ex. ["john", "doe"]
+    const parts = trimmedTerm.split(/\s+/);
+
     const filtered = advocates.filter((advocate) => {
-      return (
-        advocate.firstName.toLowerCase().includes(trimmedTerm) ||
-        advocate.lastName.toLowerCase().includes(trimmedTerm) ||
-        advocate.city.toLowerCase().includes(trimmedTerm) ||
-        advocate.degree.toLowerCase().includes(trimmedTerm) ||
-        advocate.yearsOfExperience.toString().toLowerCase().includes(trimmedTerm) ||
-        advocate.specialties.some((s) => s.toLowerCase().includes(trimmedTerm))
-      );
+
+      const searchableString = [
+        advocate.firstName,
+        advocate.lastName,
+        advocate.city,
+        advocate.degree,
+        advocate.yearsOfExperience.toString(),
+        ...advocate.specialties,
+      ]
+        .map((s) => s.toLowerCase())
+        .join(" ");
+
+      return parts.every((part) => searchableString.includes(part));
     });
 
     setFilteredAdvocates(filtered);
