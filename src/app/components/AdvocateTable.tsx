@@ -1,17 +1,11 @@
-import React from "react";
+import { Advocate } from "../types";
 import AdvocateRow from "./AdvocateRow";
 
-type Advocate = {
-  firstName: string;
-  lastName: string;
-  city: string;
-  degree: string;
-  specialties: string[];
-  yearsOfExperience: string;
-  phoneNumber: string;
+type AdvocateTableProps = {
+  advocates: Advocate[];
 };
 
-export default function AdvocateTable({ advocates }: { advocates: Advocate[] }) {
+export default function AdvocateTable({ advocates }: AdvocateTableProps) {
   return (
     <table>
       <thead>

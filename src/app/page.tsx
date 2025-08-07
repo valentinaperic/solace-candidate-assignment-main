@@ -10,46 +10,50 @@ type Advocate = {
   city: string;
   degree: string;
   specialties: string[];
-  yearsOfExperience: string;
+  yearsOfExperience: number | string;
   phoneNumber: string;
 };
 
 export default function Home() {
   const [advocates, setAdvocates] = useState<Advocate[]>([]);
   const [filteredAdvocates, setFilteredAdvocates] = useState<Advocate[]>([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     console.log("fetching advocates...");
-    fetch("/api/advocates").then((response) => {
-      response.json().then((jsonResponse) => {
+    fetch("/api/advocates")
+      .then((res) => res.json())
+      .then((jsonResponse) => {
         setAdvocates(jsonResponse.data);
         setFilteredAdvocates(jsonResponse.data);
       });
-    });
   }, []);
 
-  const onChange = (e) => {
-    const searchTerm = e.target.value;
+  const handleSearchChange = (term: string) => {
+    const trimmedTerm = term.trim().toLowerCase();
+    setSearchTerm(term);
 
-    document.getElementById("search-term").innerHTML = searchTerm;
+    if (!trimmedTerm) {
+      setFilteredAdvocates(advocates);
+      return;
+    }
 
-    console.log("filtering advocates...");
     const filtered = advocates.filter((advocate) => {
       return (
-        advocate.firstName.includes(searchTerm) ||
-        advocate.lastName.includes(searchTerm) ||
-        advocate.city.includes(searchTerm) ||
-        advocate.degree.includes(searchTerm) ||
-        advocate.specialties.includes(searchTerm) ||
-        advocate.yearsOfExperience.includes(searchTerm)
+        advocate.firstName.toLowerCase().includes(trimmedTerm) ||
+        advocate.lastName.toLowerCase().includes(trimmedTerm) ||
+        advocate.city.toLowerCase().includes(trimmedTerm) ||
+        advocate.degree.toLowerCase().includes(trimmedTerm) ||
+        advocate.yearsOfExperience.toString().toLowerCase().includes(trimmedTerm) ||
+        advocate.specialties.some((s) => s.toLowerCase().includes(trimmedTerm))
       );
     });
 
     setFilteredAdvocates(filtered);
   };
 
-  const onClick = () => {
-    console.log(advocates);
+  const handleResetSearch = () => {
+    setSearchTerm("");
     setFilteredAdvocates(advocates);
   };
 
@@ -57,9 +61,11 @@ export default function Home() {
     <main style={{ margin: "24px" }}>
       <h1>Solace Advocates</h1>
       <br />
-      <br />
-      <SearchBar onChange={onChange} onReset={onClick} />
-      <br />
+      <SearchBar
+        searchTerm={searchTerm}
+        onSearchChange={handleSearchChange}
+        onReset={handleResetSearch}
+      />
       <br />
       <AdvocateTable advocates={filteredAdvocates} />
     </main>

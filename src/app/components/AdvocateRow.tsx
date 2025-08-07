@@ -1,14 +1,5 @@
 import React from "react";
-
-type Advocate = {
-  firstName: string;
-  lastName: string;
-  city: string;
-  degree: string;
-  specialties: string[];
-  yearsOfExperience: string;
-  phoneNumber: string;
-};
+import { Advocate } from "../types";
 
 export default function AdvocateRow({ advocate }: { advocate: Advocate }) {
   return (
